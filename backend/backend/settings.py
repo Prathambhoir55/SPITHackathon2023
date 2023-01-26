@@ -134,9 +134,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = '/home/caramelcheese/caramelcheese.pythonanywhere.com/static/'
+STATIC_ROOT = '/home/whathehack/whathehack.pythonanywhere.com/static/'
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/home/caramelcheese/caramelcheese.pythonanywhere.com/media/'
+MEDIA_ROOT = '/home/whathehack/whathehack.pythonanywhere.com/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
