@@ -38,7 +38,7 @@ class User(AbstractUser):
     username=None
 
     # extra fields
-    email = models.EmailField(primary_key=True)
+    email = models.EmailField(unique=True)
     name = models.CharField(max_length = 30)
     phone_no = models.CharField(max_length = 10)
 

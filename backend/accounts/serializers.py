@@ -41,3 +41,20 @@ class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['email','password']
+
+
+class UserSerializer(serializers.ModelSerializer):
+    password= serializers.CharField(max_length = 16, min_length = 8, write_only=True)
+    class Meta:
+        model = User
+        fields = ['name', 'email','phone_no', 'password']
+
+    # To update user
+    def update(self,validated_data,instance):
+        instance.name = validated_data['name'] 
+        instance.phone_no = validated_data['phone_no']
+        instance.email = validated_data['email']
+        if instance.password != validated_data['password']:
+            instance.set_password(validated_data['password'])
+        instance.save()
+        return instance
