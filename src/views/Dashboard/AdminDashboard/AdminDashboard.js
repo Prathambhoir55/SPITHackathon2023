@@ -15,6 +15,7 @@ const AdminDashboard = () => {
 	const { isLoading, genderData, leavesData, bloodGroupData } = useSelector(
 		(state) => state.charts
 	)
+	console.log(genderData);
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(fetchGenderData())
@@ -34,7 +35,7 @@ const AdminDashboard = () => {
 
 				<RenderIf isTrue={genderData && genderData?.length > 0}>
 					<div className="sm:col-start-8 sm:col-end-11">
-						<ChartCard title="Progress">
+						<ChartCard  title="Progress">
 							<PieChart
 								labels={["Jan", "Feb", "march", "April"]}
 								colors={["#EED180", "#FFDEB4", "#FF8FB1", "#B7D3DF"]}

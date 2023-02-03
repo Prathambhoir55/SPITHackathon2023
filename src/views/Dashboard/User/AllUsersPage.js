@@ -4,8 +4,10 @@ import { useNavigate } from "react-router"
 import Line from "./Line"
 import Chart from "./Chart"
 import NumberOfEx from "./NumberOfEx"
+import PieChart from "../../Dashboard/AdminDashboard/components/Charts/PieChart"
 import { HiUserAdd, HiPencilAlt, HiPlus, HiSearch } from "react-icons/hi"
 import { toast } from "react-toastify"
+import ChartCard from "../AdminDashboard/components/ChartCard"
 import {
 	toastReset,
 	createEmployeeType,
@@ -97,11 +99,43 @@ const AllUsersPage = () => {
 	if (isLoading || userIsLoading) {
 		return <LoadingSpinner />
 	}
+
+	const Data = [
+
+		{ gender: '0', count: 30 },
+		{ gender: '1', count: 10 },
+		{ gender: '2', count: 4 },
+		{ gender: '3', count: 4 },
+		{ gender: '4', count: 26 },
+		{ gender: '5', count: 30 },
+	]
+
+	const Tone = [
+
+		{ gender: '0', count: 5 },
+		{ gender: '1', count: 15 },
+		{ gender: '2', count: 23 },
+	]
 	return (
 		<div>
 			<Line />
 			<NumberOfEx />
 			<Chart />
+			<div  className="grid grid-cols-2 sm:col-start-8 sm:col-end-11">
+				<ChartCard title="Gestures">
+					<PieChart labels={["One", "Two", "Three", "Four","Level","This/That"]}
+						colors={["#FF7599", "#A9FF96", "#FFBC75", "#B7D3DF","#999EFF","orange"]}
+						dataSet={Data}
+						loading={isLoading} />
+				</ChartCard>
+				<ChartCard title="Tone">
+					<PieChart labels={["Negative", "Positive", "Neutral"]}
+						colors={["#FF7599", "#A9FF96", "#B7D3DF"]}
+						dataSet={Tone}
+						loading={isLoading} />
+				</ChartCard>
+			</div>
+
 		</div >
 	)
 }
