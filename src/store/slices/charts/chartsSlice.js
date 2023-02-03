@@ -7,9 +7,9 @@ import {
 
 const initialState = {
 	isLoading: false,
-	genderData: [],
-	leavesData: [],
-	bloodGroupData: [],
+	strong: [],
+	mocks: [],
+	progress: [],
 	success: null,
 	message: "",
 }

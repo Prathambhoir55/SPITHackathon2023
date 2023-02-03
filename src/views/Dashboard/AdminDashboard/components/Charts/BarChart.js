@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react"
 import "chart.js/auto"
 import { Bar } from "react-chartjs-2"
 
-const BarChart = ({ labels, dataSet, colors }) => {
+const labels = ["Frontend","backend","Blockchain","DA","ML","AI","CN","UI/UX","others"]
+const BarChart = ({ label, dataSet, colors }) => {
 	const [chartData, setChartData] = useState(null)
 	useEffect(() => {
 		const data = {
 			labels: labels,
 			datasets: [
 				{
-					label: "Blood group",
+					label: "Domains",
 					data: dataSet?.map((item) => {
 						return item?.count
 					}),

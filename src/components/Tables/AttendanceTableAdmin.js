@@ -1,5 +1,5 @@
 import { TableContainer, Tbody, Thead, Th, Td, Table } from "./TableStyles"
-import { TableFooter } from ".."
+import { Button, TableFooter } from ".."
 
 const AttendanceTableAdmin = ({
 	content,
@@ -14,9 +14,9 @@ const AttendanceTableAdmin = ({
 			<Table>
 				<Thead>
 					<Th>Date</Th>
-					<Th>Present</Th>
-					<Th>Absent</Th>
-					<Th>Unavailable</Th>
+					<Th>Points</Th>
+					<Th>Penalty</Th>
+					<Th>Transcript</Th>
 				</Thead>
 
 				<Tbody>
@@ -32,7 +32,7 @@ const AttendanceTableAdmin = ({
 							</Td>
 							<Td>{item?.present}</Td>
 							<Td>{item?.absent}</Td>
-							<Td>{item?.unavailable}</Td>
+							<Td><Button>Enter</Button></Td>
 						</tr>
 					))}
 				</Tbody>

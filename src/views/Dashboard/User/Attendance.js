@@ -145,11 +145,7 @@ const Attendance = () => {
 	}
 	return (
 		<div>
-			<SectionHeader text="Attendance of all the employees">
-				<Button onClick={() => navigate("bulk-attendance")} Icon={HiPlusCircle}>
-					Bulk Attendance
-				</Button>
-			</SectionHeader>
+			
 			<NoteText>Filters</NoteText>
 			<form
 				onSubmit={attendanceWithDateFiltersHandlers}

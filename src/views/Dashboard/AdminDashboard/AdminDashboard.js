@@ -34,9 +34,9 @@ const AdminDashboard = () => {
 
 				<RenderIf isTrue={genderData && genderData?.length > 0}>
 					<div className="sm:col-start-8 sm:col-end-11">
-						<ChartCard title="Gender">
+						<ChartCard title="Progress">
 							<PieChart
-								labels={["Others", "Unspecified", "Female", "Male"]}
+								labels={["Jan", "Feb", "march", "April"]}
 								colors={["#EED180", "#FFDEB4", "#FF8FB1", "#B7D3DF"]}
 								dataSet={genderData}
 								loading={isLoading}
@@ -46,7 +46,7 @@ const AdminDashboard = () => {
 				</RenderIf>
 				<RenderIf isTrue={leavesData && leavesData?.length > 0}>
 					<div className="sm:col-start-8 sm:col-end-11">
-						<ChartCard title="Leaves">
+						<ChartCard title="Mocks attended">
 							<PieChart
 								labels={leavesData?.map((item) => {
 									return item?.status
@@ -60,7 +60,7 @@ const AdminDashboard = () => {
 				</RenderIf>
 				<RenderIf isTrue={bloodGroupData && bloodGroupData?.length > 0}>
 					<div className="sm:col-start-1 sm:col-end-6">
-						<ChartCard title="Blood group">
+						<ChartCard title="Strong Domain">
 							<BarChart
 								labels={bloodGroupData?.map((item) => {
 									return item?.blood_group

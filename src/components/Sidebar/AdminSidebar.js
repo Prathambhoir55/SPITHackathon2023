@@ -13,8 +13,10 @@ import {
 	HiCube,
 } from "react-icons/hi"
 import { VscGraph } from "react-icons/vsc"
-import { FaRobot ,FaCalendarTimes } from "react-icons/fa"
+import { FaRobot, FaCalendarTimes } from "react-icons/fa"
+import { MdOutlineAutoGraph } from "react-icons/md"
 import axios from "../../Services/axios"
+// import ImProfile from "react-icons/im"
 // import NotificationDropdown from "../Dropdowns/NotificationDropdown"
 // import UserDropdown from "../Dropdowns/UserDropdown"
 import { ThemeToggle } from ".."
@@ -162,8 +164,8 @@ export default function Sidebar() {
 										onClick={() => setCollapseShow(false)}
 										to="/admin/finance"
 									>
-										<FaRobot className="w-5 h-5 mr-2" />
-										Interview
+										<FaUserTie className="w-5 h-5 mr-2" />
+										Profile
 									</NavLink>
 								</li>
 							)}
@@ -190,7 +192,7 @@ export default function Sidebar() {
 										onClick={() => setCollapseShow(false)}
 										to="/admin/users"
 									>
-										<FaUserTie className="w-5 h-5 mr-2" />
+										<MdOutlineAutoGraph className="w-5 h-5 mr-2" />
 										Interview Analysis
 									</NavLink>
 								</li>
@@ -218,7 +220,7 @@ export default function Sidebar() {
 										onClick={() => setCollapseShow(false)}
 										to="/admin/interview"
 									>
-										<HiCube className="w-5 h-5 mr-2" />
+										<FaRobot className="w-5 h-5 mr-2" />
 										Interview
 									</NavLink>
 								</li>

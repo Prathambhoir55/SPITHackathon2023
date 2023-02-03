@@ -9,18 +9,14 @@ const Users = () => {
 		<div>
 			<Tabs selectedTabClassName="tabs-styles">
 				<TabList className="tab_list-styles ">
-					<Tab className="tab-styles">Users</Tab>
-					<Tab className="tab-styles">Attendance</Tab>
-					<Tab className="tab-styles">Leave</Tab>
+					<Tab className="tab-styles">Dashboard</Tab>
+					<Tab className="tab-styles">Recordings</Tab>
 				</TabList>
 				<TabPanel>
 					<AllUsersPage />
 				</TabPanel>
 				<TabPanel>
 					<Attendance />
-				</TabPanel>
-				<TabPanel>
-					<Leave />
 				</TabPanel>
 			</Tabs>
 		</div>
