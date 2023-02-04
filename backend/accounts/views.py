@@ -1,4 +1,4 @@
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.authtoken.models import Token
 from .serializers import *
 from django.contrib.auth import authenticate,login
@@ -55,3 +55,12 @@ class UserGetAPI(GenericAPIView):
         serializer = self.serializer_class(data=data)
         user = serializer.update(request.data, user)
         return Response(request.data, status = status.HTTP_200_OK)
+
+
+class ClusteredUsersGETAPI(ListAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = User.objects.filter(cluster = self.request.user.cluster)
+        return queryset
