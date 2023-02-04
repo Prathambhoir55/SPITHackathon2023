@@ -76,9 +76,9 @@ const Finance = () => {
 	const [showDeductionWarning, setShowDeductionWarning] = useState(false)
 	const [file, setFile] = useState()
 
-    function handleChange(event) {
-        setFile(event.target.files[0])
-    }
+	function handleChange(event) {
+		setFile(event.target.files[0])
+	}
 
 	const { isLoading, allowances, deductions, success, message, showToast } =
 		useSelector((state) => state.finance)
@@ -173,13 +173,54 @@ const Finance = () => {
 	return (
 		<div>
 			<Tabs selectedTabClassName="tabs-styles">
+				<Button>Add</Button>
 				<TabList className="tab_list-styles ">
-					<Tab className="tab-styles">Domain Choices</Tab>
-					<Tab className="tab-styles">Profession Choice</Tab>
-					<Tab className="tab-styles">Improvement choice</Tab>
-					<Tab className="tab-styles">Resume upload</Tab>
+					<Tab className="tab-styles">Notes</Tab>
+					<Tab className="tab-styles">Flash cards</Tab>
+					<Tab className="tab-styles">Summary</Tab>
 				</TabList>
 				<TabPanel>
+					<SectionHeader text="All the finance details such as allowance, deductions and salary etc.">
+						{/* Deduction create modal */}
+						<Modal
+							title="Add new deduction"
+							activator={({ setShow }) => (
+								<Button Icon={HiPlusCircle} onClick={() => setShow(true)}>
+									Create deduction
+								</Button>
+							)}
+						>
+							<form onSubmit={createDeductionHandler}>
+								<InputTag
+									Icon={FiType}
+									label="Name"
+									placeholder="Enter deduction name"
+									value={newDeduction.name}
+									onChange={(e) =>
+										setNewDeduction((prev) => ({
+											...prev,
+											name: e.target.value,
+										}))
+									}
+								/>
+								<TextareaTag
+									Icon={HiQuestionMarkCircle}
+									label="Description"
+									placeholder="Enter deduction description"
+									value={newDeduction.description}
+									onChange={(e) =>
+										setNewDeduction((prev) => ({
+											...prev,
+											description: e.target.value,
+										}))
+									}
+								/>
+								<Button type="submit" Icon={HiPlusCircle}>
+									Create
+								</Button>
+							</form>
+						</Modal>
+					</SectionHeader>
 					<div className="grid md:grid-cols-4 gap-3">
 						{DOMAINCHOICES.map((item, idx) => (
 							<TransitionBtoT key={idx}>
@@ -197,7 +238,6 @@ const Finance = () => {
 						))}
 					</div>
 				</TabPanel>
-
 				<TabPanel>
 					<div className="grid md:grid-cols-4 gap-3">
 						{IMPROVEMENT_CHOICES.map((item, idx) => (
@@ -208,44 +248,48 @@ const Finance = () => {
 					</div>
 				</TabPanel>
 				<TabPanel>
-				<div className="relative w-full mb-3">
-                <label
-                    className="flex items-center text-slate-500 text-xs font-semibold mb-2"
-                    htmlFor="grid-password"
-                >
-                    <AiOutlineBook className="mr-1" />
-                    Resume
-                </label>
-                <input
-                    onChange={handleChange}
-                    name="file"
-                    type="file"
-                    className="px-3 py-3 placeholder-blueGray-300 text-slate-700 placeholder:text-slate-400 bg-gray-50  border borderColor rounded-xl text-sm  focus:outline-none w-full ease-linear transition-all duration-150"
-                    required
-                />
-            </div>
+					<div className="relative w-full mb-3">
+						<label
+							className="flex items-center text-slate-500 text-xs font-semibold mb-2"
+							htmlFor="grid-password"
+						>
+							<AiOutlineBook className="mr-1" />
+							Resume
+						</label>
+						<input
+							onChange={handleChange}
+							name="file"
+							type="file"
+							className="px-3 py-3 placeholder-blueGray-300 text-slate-700 placeholder:text-slate-400 bg-gray-50  border borderColor rounded-xl text-sm  focus:outline-none w-full ease-linear transition-all duration-150"
+							required
+						/>
+					</div>
 				</TabPanel>
 			</Tabs>
 
 			{/* Warning modals */}
 			{/* Allowance delete warning */}
-			{showAllowanceWarning && (
-				<WarningModal
-					close={closeAllowanceDeleteModalHandler}
-					submit={deleteAllowanceHandler}
-				/>
-			)}
+			{
+				showAllowanceWarning && (
+					<WarningModal
+						close={closeAllowanceDeleteModalHandler}
+						submit={deleteAllowanceHandler}
+					/>
+				)
+			}
 			{/* Deduction delete warning */}
-			{showDeductionWarning && (
-				<WarningModal
-					close={closeDeductionDeleteModalHandler}
-					submit={deleteDeductionHandler}
-				/>
-			)}
+			{
+				showDeductionWarning && (
+					<WarningModal
+						close={closeDeductionDeleteModalHandler}
+						submit={deleteDeductionHandler}
+					/>
+				)
+			}
 
 			{/* Loading spinner */}
 			{isLoading && <LoadingSpinner />}
-		</div>
+		</div >
 	)
 }
 
