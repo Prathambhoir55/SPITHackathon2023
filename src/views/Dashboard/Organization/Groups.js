@@ -64,7 +64,6 @@ const Groups = () => {
 			<PomodoroProvider>
 				<MainTask themes={themes} />
 				<PomodoroGrid gridRef={gridRef} themes={themes} />
-				<SaveButton gridRef={gridRef} />
 			</PomodoroProvider>
 		</div>
 	)
