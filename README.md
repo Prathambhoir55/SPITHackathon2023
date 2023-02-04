@@ -1,1 +1,0 @@
-# SPITHackathon2023
