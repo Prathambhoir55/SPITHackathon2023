@@ -28,7 +28,9 @@ const TaskTimer = memo((props) => {
     <>
       <div className='timer-label'>{timerString}</div>
       <EndTime
-        buttonColor="black"
+        buttonColor={`${currentTheme
+    ? colors.bg[currentTheme].dark
+    : "bg-purple-800"}`}
         timerStarted={stateTimerStarted}
         setTimerStarted={(prev) => setStateTimerStarted(prev)}
         id={id}

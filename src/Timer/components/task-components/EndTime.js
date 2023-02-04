@@ -25,11 +25,11 @@ const EndTime = memo((props) => {
     };
     
     return (<div className='end-timer-container'>
-        <Button disableElevation sx={{ color: buttonColor }} onClick={onClickHandler} variant="contained" startIcon={timerStarted ? <StopIcon fontSize='medium' /> : <PlayArrowIcon fontSize='medium' />}>
+        <Button disableElevation sx={{ color: "black" }} onClick={onClickHandler} variant="contained" startIcon={timerStarted ? <StopIcon fontSize='medium' /> : <PlayArrowIcon fontSize='medium' />}>
             {timerStarted ? "STOP" : "START"}
         </Button>
     {/* <FullScreen handle={handle}><Groups/></FullScreen> */}
-        <span>end time<span>{endTimeString}</span></span>
+        <span>end time <span>{endTimeString}</span></span>
     </div>)
 });
 
