@@ -11,6 +11,7 @@ const TaskTimer = memo((props) => {
 
   const callback = useCallback(() => {
     setStateTimerStarted(false);
+    console.log("Callback triggered!!");
   }, []);
 
   const [seconds, setSeconds] = useTimer(stateTimerStarted, timeLeft, callback);

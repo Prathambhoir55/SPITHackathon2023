@@ -1,10 +1,11 @@
-import { HiUserCircle } from "react-icons/hi"
+import { AiFillFire } from "react-icons/ai"
 
 const UserNavCard = ({ name, email, logout }) => {
 	return (
 		<div className="px-2 py-1 rounded-md border borderColor bg-white dark:bg-purple_5 flex md:items-center md:flex-row flex-col">
 			<div className="flex items-center mr-3">
-				<HiUserCircle className="h-8 w-8 block mr-2 dark:text-slate-500" />
+				<AiFillFire className="h-8 w-8 block mr-2 text-yellow-400 dark:text-slate-500" />
+				<span className="text-slate-600" style={{transform:"translateX(-10px)"}}>9</span>
 				<div>
 					<h4 className="text-sm text-slate-700 dark:text-slate-200 font-semibold">
 						{!name.includes("undefined") ? name : "Name"}
