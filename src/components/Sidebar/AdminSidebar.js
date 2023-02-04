@@ -15,6 +15,8 @@ import {
 import { VscGraph } from "react-icons/vsc"
 import { FaRobot, FaCalendarTimes } from "react-icons/fa"
 import { MdOutlineAutoGraph } from "react-icons/md"
+import  {useCallback} from 'react';
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import axios from "../../Services/axios"
 // import ImProfile from "react-icons/im"
 // import NotificationDropdown from "../Dropdowns/NotificationDropdown"
@@ -24,9 +26,10 @@ import UserNavCard from "../Cards/UserNavCard"
 import { employeeProfile } from "../../store/slices/employee/employeeSlice"
 import { logout } from "../../store/slices/auth/authSlice"
 import RenderIf from "../RenderIf/RenderIf"
-
+import Groups from "../../views/Dashboard/Organization/Groups"
 export default function Sidebar() {
 	const [collapseShow, setCollapseShow] = useState(false)
+	const handle = useFullScreenHandle();
 	const [adminInfo, setAdminInfo] = useState(null)
 	const { isAdmin } = useSelector((state) => state.auth)
 	const { currentTheme, colors } = useSelector((state) => state.theme)
@@ -175,11 +178,15 @@ export default function Sidebar() {
 										className={({ isActive }) =>
 											isActive ? activeLink : inActiveLink
 										}
-										onClick={() => setCollapseShow(false)}
+										onClick={() => {
+											setCollapseShow(false);
+											handle.enter()
+										}}
 										to="/admin/group"
 									>
 										<FaCalendarTimes className="w-5 h-5 mr-2" />
-										Resume Analysis
+										Focus Mode
+										{/* <FullScreen handle={handle}><Groups/></FullScreen> */}
 									</NavLink>
 								</li>
 							)}
