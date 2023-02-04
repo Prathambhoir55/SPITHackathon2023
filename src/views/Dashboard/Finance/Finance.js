@@ -195,7 +195,7 @@ const Finance = () => {
               title="Add new deduction"
               activator={({ setShow }) => (
                 <Button Icon={HiPlusCircle} onClick={() => setShow(true)}>
-                  Create deduction
+                  Add note
                 </Button>
               )}>
               <form onSubmit={createDeductionHandler}>
