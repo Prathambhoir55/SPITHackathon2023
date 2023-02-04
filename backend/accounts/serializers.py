@@ -47,7 +47,7 @@ class UserSerializer(serializers.ModelSerializer):
     password= serializers.CharField(max_length = 16, min_length = 8, write_only=True)
     class Meta:
         model = User
-        fields = ['name', 'email','phone_no', 'password']
+        fields = ['name', 'email','phone_no', 'password', 'cluster']
 
     # To update user
     def update(self,validated_data,instance):

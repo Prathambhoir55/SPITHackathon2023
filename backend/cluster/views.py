@@ -25,8 +25,10 @@ class StudyTimeAPI(GenericAPIView):
         serializer = self.serializer_class(data=data)
         if serializer.is_valid():
             valid_data = serializer.create(serializer.validated_data, user)
-            list1, list2 = form_data()
-            return JsonResponse({"message": "success", "data": valid_data}, status= status.HTTP_201_CREATED)
+            print(len(list(User.objects.all())))
+            if len(list(User.objects.all())) >2:
+                cluster = cluster_data(request)
+            return JsonResponse({"message": "success", "data": valid_data, "cluster":cluster}, status= status.HTTP_201_CREATED)
         else:
             return JsonResponse({"message":"data not valid"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -41,7 +43,9 @@ class TestMarksPOSTAPI(GenericAPIView):
         serializer = self.serializer_class(data=data)
         if serializer.is_valid():
             valid_data = serializer.create(serializer.validated_data, user)
-            return JsonResponse({"message": "success", "data": valid_data}, status= status.HTTP_201_CREATED)
+            if User.objects.all().count() >1:
+                cluster = cluster_data(request)
+            return JsonResponse({"message": "success", "data": valid_data, "cluster":cluster}, status= status.HTTP_201_CREATED)
         else:
             return JsonResponse({"message":"data not valid"}, status=status.HTTP_400_BAD_REQUEST)
 

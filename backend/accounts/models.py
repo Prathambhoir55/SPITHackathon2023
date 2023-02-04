@@ -41,6 +41,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     name = models.CharField(max_length = 30)
     phone_no = models.CharField(max_length = 10)
+    cluster = models.IntegerField(blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS=[]
