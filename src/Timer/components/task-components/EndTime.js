@@ -15,11 +15,12 @@ const EndTime = memo((props) => {
     const endTimeString = serialiseDate(endTime);
 
     const onClickHandler = () => {
-        
+        console.log(timeLeft-timerStarted);
         if (id !== -1) {
             timerStarted ?
                 dispatch({ type: 'stopped_timer', id, timeLeft: seconds }) :
                 dispatch({ type: 'started_timer', id })
+                // console.log(seconds);
         }
         setTimerStarted(!timerStarted);
     };
