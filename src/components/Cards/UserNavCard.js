@@ -30,7 +30,7 @@ const UserNavCard = ({ name, email, logout }) => {
       </div>
       <button
         onClick={logout}
-        className="px-2 py-1 rounded-md border-none bg-red-600 text-slate-100 text-base font-bold md:mt-0 mt-2">
+        className="px-2 py-1 rounded-md border-none bg-purple-600 text-slate-100 text-base font-bold md:mt-0 mt-2">
         Logout
       </button>
     </div>
