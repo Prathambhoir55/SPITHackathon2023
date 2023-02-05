@@ -213,8 +213,8 @@ const Finance = () => {
     { value: "ML", data: "Machine Learning" },
   ];
   var PROFESSION_CHOICES = [
-    { value: "ST", data: "Student" },
-    { value: "DEV", data: "Developer" },
+    { value: "ST", data: " What is the longest river in the world?" },
+    { value: "DEV", data: " What is the name of the area of the upper Nile that had the richest gold mines in Africa?",},
     { value: "MGM", data: "Management" },
     { value: "OTH", data: "Others" },
   ];
@@ -224,11 +224,11 @@ const Finance = () => {
       value: "1",
       data: "I often feel others don't understand what I am saying",
     },
-    { value: "2", data: "I tend to speak too fast" },
-    { value: "3", data: "I can sometimes be too dominant in meetings" },
-    { value: "4", data: "I would like to feel less anxious in interviews" },
-    { value: "5", data: "I use a lot of filler (like 'um')" },
-    { value: "6", data: "I feel I ramble sometimes" },
+    { value: "egypt", data: "The New Kingdom was Egypt’s most powerful and prosperous period. It lasted from about 1539 B.C. to 1075 B.C. During this time, Egypt conquered lands in the Near East and in Africa. The pharaohs of the New Kingdom built huge temples and monuments. They also created a stronger central government.The Nile River has been a major source of sustenance for the Egyptian civilization for centuries. It is the longest river in the world, stretching 4,160 miles from the equator in Africa to the Mediterranean Sea. The river is divided into two parts, the upper Nile in the south and the lower Nile in the north. Every summer, heavy rains in Ethiopia caused the Nile to flood, depositing rich soil along its shores. This soil was fertile, making it ideal for growing crops. The harsh desert acted as a barrier to keep out enemies, and the Mediterranean coast was swampy and lacked good harbors. This kept the early Egyptians close to home. Agricultural techniques such as irrigation canals and shadufs allowed farmers to expand their farmland. Egyptians grew a variety of foods, including vegetables, fruits, and materials for their clothing. They also wove marsh grasses" },
+    { value: "egypt", data: "The New Kingdom was Egypt’s most powerful and prosperous period. It lasted from about 1539 B.C. to 1075 B.C. During this time, Egypt conquered lands in the Near East and built an empire. The pharaohs of the New Kingdom were powerful military leaders. They also built many temples and monuments.The Nile River has been a major source of sustenance for the Egyptian civilization for centuries. It is the longest river in the world, stretching 4,160 miles from the equator in Africa to the Mediterranean Sea. The river is divided into two parts, the upper Nile in the south and the lower Nile in the north. Every summer, heavy rains in Ethiopia caused the Nile to flood, depositing rich soil along its shores. This soil was fertile, making it ideal for growing crops. The harsh desert acted as a barrier to keep out enemies, and the Mediterranean coast was swampy and lacked good harbors. This kept the early Egyptians close to home. Agricultural techniques such as irrigation canals and shadufs allowed farmers to expand their farmland. Egyptians grew a variety of foods, including vegetables, fruits, and materials for their clothing. They also wove marsh grasses" },
+    { value: "Resume", data: ".Bhumika Mange is a student currently pursuing a Bachelor of Technology in Computer from Dwarkadas J. Sanghvi College of Engineering with an average CGPA of 9.75. She has achieved many accolades in her academic career, such as being the top scorer in college, the 2nd rank holder in Navi Mumbai HSC, and a finalist in the 17th Avishkar inter-college research convention. She has also participated in various hackathons and coding competitions, such as Unscript Rookies 24hrs national level hackathon, Lines of Code 24hrs national level Hackathon, Codebash - competitive programming competition, and IICC- Innovate India Coding Championship by AICTE.Bhumika has also gained experience through internships at PPM Info tech pvt and Dirtpals, where she worked as a React developer and front-end developer respectively. She has also worked on various projects, such as Store Easy - Inventory Website, Get in Shape - Fitness tracking website with google fit, and Course Management System.Bhumika is proficient in various programming languages, such as C++, C, Python, HTML/CSS, JavaScript, SQL, MongoDB, React" },
+    { value: "Filler", data: "I use a lot of filler (like 'um')" },
+    { value: "Ramble", data: "I feel I ramble sometimes" },
   ];
   const cardData = [
     {
@@ -291,18 +291,18 @@ const Finance = () => {
             </Modal>
           </SectionHeader>
           <div className="grid md:grid-cols-4 gap-3">
-            {sum?.map((item, idx) => (
+            {IMPROVEMENT_CHOICES.map((item, idx) => (
               <TransitionBtoT key={idx}>
-                <CardSmall value={item.pdf_name} idx={idx + 1} name={item.pdf_name} />
+                <CardSmall value={item.value} idx={idx + 1} name={item.value} />
               </TransitionBtoT>
             ))}
           </div>
         </TabPanel>
         <TabPanel>
           {/* <div className="grid md:grid-cols-4 gap-3"> */}
-          {PROFESSION_CHOICES.map((item, idx) => (
-            <TransitionBtoT key={idx}>
-              <Accordion className="p-1 m-3">
+          {/* {PROFESSION_CHOICES.map((item, idx) => ( */}
+            {/* <TransitionBtoT key={idx}> */}
+              {/* <Accordion className="p-1 m-3">
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
@@ -310,18 +310,18 @@ const Finance = () => {
                 >
                   <Typography>{item.data}</Typography>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails> */}
                   <Cards />
-                </AccordionDetails>
-              </Accordion>
+                {/* </AccordionDetails> */}
+              {/* </Accordion> */}
 
-            </TransitionBtoT>
-          ))}
+            {/* </TransitionBtoT> */}
+          {/* ))} */}
           {/* </div> */}
         </TabPanel>
         <TabPanel>
           <div className="grid md:grid-cols-2 gap-3">
-            {sum.map((item, idx) => (
+            {IMPROVEMENT_CHOICES.map((item, idx) => (
               <div>
                 <Accordion>
                   <AccordionSummary
@@ -329,11 +329,11 @@ const Finance = () => {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography>{item.pdf_name}</Typography>
+                    <Typography>{item.value}</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
-                      {item.summary}
+                      {item.data}
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
