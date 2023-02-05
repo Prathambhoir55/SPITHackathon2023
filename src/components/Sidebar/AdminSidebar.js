@@ -12,7 +12,6 @@ import {
   HiHome,
   HiCube,
 } from "react-icons/hi";
-import genie from "../../assets/img/genie.gif";
 import { AiFillSchedule } from "react-icons/ai";
 import { BsFileEarmarkTextFill, BsBarChartLineFill } from "react-icons/bs";
 import { IoMdAnalytics, IoBarChartSharp } from "react-icons/io";
@@ -78,10 +77,18 @@ export default function Sidebar() {
           <Link
             style={{
               fontFamily: "Roxierossa",
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "center",
+              width: "auto",
             }}
             className="md:mt-4 md:ml-3 md:block inline-block text-left text-purple_1 dark:border-purple-700 dark:text-slate-200 ml-2  mr-0 whitespace-nowrap text-xl font-semibold"
             to="/dashboard/">
             Genie.us
+            <img
+              src={require("../../assets/img/genie_img-removebg-preview.png")}
+              style={{ height: "50px", width: "50px" }}
+            />
           </Link>
 
           {/* Toggler */}
