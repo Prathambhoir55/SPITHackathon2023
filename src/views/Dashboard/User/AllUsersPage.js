@@ -121,14 +121,14 @@ const AllUsersPage = () => {
 			<Line />
 			<NumberOfEx />
 			<Chart />
-			<div  className="grid grid-cols-2 sm:col-start-8 sm:col-end-11">
-				<ChartCard title="Gestures">
-					<PieChart labels={["One", "Two", "Three", "Four","Level","This/That"]}
-						colors={["#FF7599", "#A9FF96", "#FFBC75", "#B7D3DF","#999EFF","orange"]}
+			<div className="grid grid-cols-2 sm:col-start-8 sm:col-end-11">
+				<ChartCard title="Focus">
+					<PieChart labels={["None", "very less", "Less", "medium", "Active", "Upper active"]}
+						colors={["#FF7599", "#A9FF96", "#FFBC75", "#B7D3DF", "#999EFF", "orange"]}
 						dataSet={Data}
 						loading={isLoading} />
 				</ChartCard>
-				<ChartCard title="Tone">
+				<ChartCard title="Postures">
 					<PieChart labels={["Negative", "Positive", "Neutral"]}
 						colors={["#FF7599", "#A9FF96", "#B7D3DF"]}
 						dataSet={Tone}

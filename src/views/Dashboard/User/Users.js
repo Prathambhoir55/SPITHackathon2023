@@ -10,7 +10,7 @@ const Users = () => {
 			<Tabs selectedTabClassName="tabs-styles">
 				<TabList className="tab_list-styles ">
 					<Tab className="tab-styles">Dashboard</Tab>
-					<Tab className="tab-styles">Recordings</Tab>
+					<Tab className="tab-styles">Scores</Tab>
 				</TabList>
 				<TabPanel>
 					<AllUsersPage />
