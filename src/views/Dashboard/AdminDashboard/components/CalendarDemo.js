@@ -1,6 +1,8 @@
 /* eslint-disable react/destructuring-assignment */
 import * as React from "react";
 import Paper from "@mui/material/Paper";
+import { useDispatch, useSelector } from "react-redux"
+
 import { ViewState, EditingState } from "@devexpress/dx-react-scheduler";
 import {
   Scheduler,
@@ -10,10 +12,9 @@ import {
   EditRecurrenceMenu,
   AllDayPanel,
 } from "@devexpress/dx-react-scheduler-material-ui";
-
 const recurrenceAppointments = [
   {
-    title: "Website Re-Design Plan",
+    title: "History",
     startDate: new Date(2018, 5, 25, 9, 15),
     endDate: new Date(2018, 5, 25, 11, 30),
     id: 100,
@@ -21,7 +22,7 @@ const recurrenceAppointments = [
     exDate: "20180628T063500Z,20180626T061500Z",
   },
   {
-    title: "Book Flights to San Fran for Sales Trip",
+    title: "Maths",
     startDate: new Date(2018, 5, 25, 12, 11),
     endDate: new Date(2018, 5, 25, 13, 0),
     id: 101,
@@ -30,42 +31,42 @@ const recurrenceAppointments = [
     allDay: true,
   },
   {
-    title: "Install New Router in Dev Room",
+    title: "Maths",
     startDate: new Date(2018, 5, 25, 13, 30),
     endDate: new Date(2018, 5, 25, 14, 35),
     id: 102,
     rRule: "FREQ=DAILY;COUNT=5",
   },
   {
-    title: "Approve Personal Computer Upgrade Plan",
+    title: "English",
     startDate: new Date(2018, 5, 26, 10, 0),
     endDate: new Date(2018, 5, 26, 11, 0),
     id: 3,
     location: "Room 2",
   },
   {
-    title: "Final Budget Review",
+    title: "Geography",
     startDate: new Date(2018, 5, 27, 11, 45),
     endDate: new Date(2018, 5, 27, 13, 20),
     id: 4,
     location: "Room 2",
   },
   {
-    title: "New Brochures",
+    title: "Dance",
     startDate: new Date(2018, 5, 26, 14, 40),
     endDate: new Date(2018, 5, 26, 15, 45),
     id: 5,
     location: "Room 2",
   },
   {
-    title: "Install New Database",
+    title: "Maths",
     startDate: new Date(2018, 5, 28, 9, 45),
     endDate: new Date(2018, 5, 28, 11, 15),
     id: 10,
     location: "Room 1",
   },
   {
-    title: "Approve New Online Marketing Strategy",
+    title: "Science",
     startDate: new Date(2018, 5, 29, 11, 45),
     endDate: new Date(2018, 5, 29, 13, 5),
     id: 12,
@@ -83,14 +84,17 @@ const recurrenceAppointments = [
 const dragDisableIds = new Set([3, 8, 10, 12]);
 
 const allowDrag = ({ id }) => !dragDisableIds.has(id);
-const appointmentComponent = (props) => {
+const AppointmentComponent = (props) => {
+const { currentTheme, colors } = useSelector((state) => state.theme)
+
   if (allowDrag(props.data)) {
     return (
       <Appointments.Appointment
+       
         {...props}
         style={{
           ...props.style,
-          backgroundColor: "#3b82f6",
+          backgroundColor: "#FF6795",
         }}
       />
     );
@@ -101,7 +105,7 @@ const appointmentComponent = (props) => {
       style={{
         ...props.style,
         cursor: "not-allowed",
-        backgroundColor: "rgba(255,50,50,0.8)",
+        backgroundColor: "#3FCDCD",
       }}
     />
   );
@@ -145,7 +149,7 @@ export default class Demo extends React.PureComponent {
     const { data, currentDate } = this.state;
 
     return (
-      <Paper color="secondary">
+      <Paper elevation={3} color="secondary">
         <Scheduler color="secondary" data={data} height={660}>
           <ViewState
             color="secondary"
@@ -160,7 +164,7 @@ export default class Demo extends React.PureComponent {
           <WeekView color="secondary" startDayHour={9} endDayHour={16} />
           <Appointments
             color="secondary"
-            appointmentComponent={appointmentComponent}
+            appointmentComponent={AppointmentComponent}
           />
           <AllDayPanel />
           <DragDropProvider allowDrag={allowDrag} />

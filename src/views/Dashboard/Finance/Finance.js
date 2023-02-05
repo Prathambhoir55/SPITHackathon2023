@@ -291,7 +291,7 @@ const Finance = () => {
             </Modal>
           </SectionHeader>
           <div className="grid md:grid-cols-4 gap-3">
-            {sum.map((item, idx) => (
+            {sum?.map((item, idx) => (
               <TransitionBtoT key={idx}>
                 <CardSmall value={item.pdf_name} idx={idx + 1} name={item.pdf_name} />
               </TransitionBtoT>

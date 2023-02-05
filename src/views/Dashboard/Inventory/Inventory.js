@@ -41,23 +41,23 @@ const Inventory = () => {
 		console.log(chat2);
 
 
-		const res = await fetch("http://localhost:3080/", {
+		const res = await fetch("https://95d5-2402-3a80-6ff-3e4d-c83b-8d43-d444-56e7.in.ngrok.io/doubts/doubts/", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
-				message: input
+				text: input
 			})
 		})
 
 		const data = await res.json();
 		console.log(data);
-		const info = data.data.organic_results;
-		let temp = "These will help you "
-		info.map((k) => {
-			return temp = temp + " " + k.url;
-		})
+		const info = data.response;
+		let temp = "These will help you " + info
+		// info.map((k) => {
+		// 	return temp = temp + " " + k.url;
+		// })
 		// chatlog([...chat, { user: "bot", message: temp }])
 		chatlog([...chat, { user: "me", message: input },{ user: "bot", message: temp }])
 		setInput("");

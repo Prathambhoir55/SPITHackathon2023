@@ -154,16 +154,16 @@ const Attendance = () => {
               </Button>
             </form>
           </Modal>
-          <div className="mx-auto w-96 ">
+          <div style={{transform:"translateX(220px)"}} className="mx-auto ">
             Legend:
             <div class="flex items-left">
-              <div className="w-4 h-4 text-left rounded-sm bg-red-400 flex inline-block"></div>
+              <div style={{backgroundColor:"#3FCDCD"}} className="w-4 h-4 text-left rounded-sm bg-red-400 flex inline-block"></div>
               <div className="pl-2">
                 <span>Reschedule restricted (High Priority)</span>
               </div>
             </div>
             <div class="flex items-center">
-              <div className="w-4 h-4 rounded-sm bg-blue-500 flex inline-block"></div>
+              <div  style={{backgroundColor:"#FF6795"}} className="w-4 h-4 rounded-sm bg-blue-500 flex inline-block"></div>
               <div className="pl-2">
                 <span>Reschedule permitted (Low Priority)</span>
               </div>
