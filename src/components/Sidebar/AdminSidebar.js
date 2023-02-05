@@ -69,7 +69,7 @@ export default function Sidebar() {
   return (
     <>
       <nav
-        className={`md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden  dark:bg-transparent flex flex-wrap items-center justify-between md:w-64 md:py-2 pt-4 pb-4 px-3 md:px-4 border-r borderColor border-b borderColor ${
+        className={`md:left-0 md:block md:fixed md:top-0 md:bottom-0  md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden  dark:bg-transparent flex flex-wrap items-center justify-between md:w-64 md:py-2 pt-4 pb-4 px-3 md:px-4 border-r borderColor border-b borderColor ${
           currentTheme ? colors.bg[currentTheme].light : "bg-gray-100"
         }`}>
         <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
@@ -80,7 +80,6 @@ export default function Sidebar() {
               display: "flex",
               justifyContent: "space-around",
               alignItems: "center",
-              width: "auto",
             }}
             className="md:mt-4 md:ml-3 md:block inline-block text-left text-purple_1 dark:border-purple-700 dark:text-slate-200 ml-2  mr-0 whitespace-nowrap text-xl font-semibold"
             to="/dashboard/">
