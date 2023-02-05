@@ -4,7 +4,7 @@ import HighchartsReact from 'highcharts-react-official';
 const options = {
 
     title: {
-        text: 'Most Improved features'
+        text: 'Most Improved subjects'
     },
 
     subtitle: {
@@ -13,7 +13,7 @@ const options = {
 
     yAxis: {
         title: {
-            text: 'Trait'
+            text: 'Percentages'
         }
     },
 
@@ -34,25 +34,25 @@ const options = {
             label: {
                 connectorAllowed: false
             },
-            pointStart: 2010
+            pointStart: 2018
         }
     },
 
     series: [{
-        name: 'Gestures',
-        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+        name: 'Maths',
+        data: [43, 52, 57, 58, 97, 11, 13, 41]
     }, {
-        name: 'Tone',
-        data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+        name: 'Science',
+        data: [24, 24, 29, 51, 90, 82, 21, 34]
     }, {
-        name: 'Confidence',
-        data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+        name: 'History',
+        data: [43, 52, 87, 68, 27, 11, 14, 90]
     }, {
-        name: 'Pitch',
-        data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+        name: 'English',
+        data: [13, 22, 57, 59, 17, 12, 13, 45]
     }, {
-        name: 'Other',
-        data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+        name: 'marathi',
+        data: [24, 24, 29, 51, 90, 82, 21, 34]
     }],
 
     responsive: {

@@ -277,25 +277,25 @@ const Finance = () => {
           </div>
         </TabPanel>
         <TabPanel>
-          <div className="grid md:grid-cols-4 gap-3">
+          {/* <div className="grid md:grid-cols-4 gap-3"> */}
             {PROFESSION_CHOICES.map((item, idx) => (
               <TransitionBtoT key={idx}>
-                <div onClick={() => navigate(`idx`)} className="shadow-sm border borderColor px-4 py-3 rounded-lg bg-[#f7f6f9] dark:bg-purple_5 relative">
-                  <h4
-                    className={`font-normal text-white text-sm px-2 rounded-lg mb-1.5  dark:bg-purple-800 inline-block ${currentTheme ? colors.bg[currentTheme].dark : "bg-purple-800"
-                      }`}
+              <Accordion className="p-1 m-3">
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
                   >
-                    {idx}
-                  </h4>
-                  {item.data && (
-                    <p className="font-normal dark:text-slate-300 text-slate-700">{item.data}</p>
-                  )}
-                  {/* {item.data} */}
-                </div>
-                { }
+                    <Typography>Accordion 1</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                   <Cards/>
+                  </AccordionDetails>
+                </Accordion>
+             
               </TransitionBtoT>
             ))}
-          </div>
+          {/* </div> */}
         </TabPanel>
         <TabPanel>
           <div className="grid md:grid-cols-2 gap-3">
