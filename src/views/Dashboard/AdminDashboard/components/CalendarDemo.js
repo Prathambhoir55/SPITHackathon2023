@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import * as React from "react";
 import Paper from "@mui/material/Paper";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 
 import { ViewState, EditingState } from "@devexpress/dx-react-scheduler";
 import {
@@ -85,16 +85,15 @@ const dragDisableIds = new Set([3, 8, 10, 12]);
 
 const allowDrag = ({ id }) => !dragDisableIds.has(id);
 const AppointmentComponent = (props) => {
-const { currentTheme, colors } = useSelector((state) => state.theme)
+  const { currentTheme, colors } = useSelector((state) => state.theme);
 
   if (allowDrag(props.data)) {
     return (
       <Appointments.Appointment
-       
         {...props}
         style={{
           ...props.style,
-          backgroundColor: "#FF6795",
+          backgroundColor: "#5521B5",
         }}
       />
     );
@@ -105,7 +104,8 @@ const { currentTheme, colors } = useSelector((state) => state.theme)
       style={{
         ...props.style,
         cursor: "not-allowed",
-        backgroundColor: "#3FCDCD",
+        color: "#6b21a8",
+        backgroundColor: "#CABFFC",
       }}
     />
   );
