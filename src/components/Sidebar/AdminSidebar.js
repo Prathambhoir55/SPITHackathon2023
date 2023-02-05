@@ -12,6 +12,7 @@ import {
   HiHome,
   HiCube,
 } from "react-icons/hi";
+import genie from "../../assets/img/genie.gif";
 import { AiFillSchedule } from "react-icons/ai";
 import { BsFileEarmarkTextFill, BsBarChartLineFill } from "react-icons/bs";
 import { IoMdAnalytics, IoBarChartSharp } from "react-icons/io";
@@ -27,6 +28,7 @@ import UserNavCard from "../Cards/UserNavCard";
 import { employeeProfile } from "../../store/slices/employee/employeeSlice";
 import { logout } from "../../store/slices/auth/authSlice";
 import RenderIf from "../RenderIf/RenderIf";
+import { Image } from "@mui/icons-material";
 
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = useState(false);
@@ -74,9 +76,12 @@ export default function Sidebar() {
         <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
           {/* Brand */}
           <Link
-            className="md:mt-4 md:ml-3 md:block inline-block text-left text-purple_1 dark:border-purple-700 dark:text-slate-200 ml-2  mr-0 whitespace-nowrap text-lg font-semibold"
+            style={{
+              fontFamily: "Roxierossa",
+            }}
+            className="md:mt-4 md:ml-3 md:block inline-block text-left text-purple_1 dark:border-purple-700 dark:text-slate-200 ml-2  mr-0 whitespace-nowrap text-xl font-semibold"
             to="/dashboard/">
-            COD
+            Genie.us
           </Link>
 
           {/* Toggler */}
@@ -205,7 +210,7 @@ export default function Sidebar() {
                     onClick={() => setCollapseShow(false)}
                     to="/admin/inventory">
                     <BsFileEarmarkTextFill className="w-5 h-5 mr-2" />
-                    Text Summarization
+                    Chat Bot
                   </NavLink>
                 </li>
               )}
