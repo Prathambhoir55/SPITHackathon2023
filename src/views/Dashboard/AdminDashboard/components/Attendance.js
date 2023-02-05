@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { HiCalendar, HiSearchCircle } from "react-icons/hi";
+import { FiType } from "react-icons/fi";
+import { HiPlusCircle, HiQuestionMarkCircle } from "react-icons/hi";
 import {
   InputTag,
   Button,
@@ -11,6 +13,7 @@ import {
   RenderIf,
   AttendanceTableAdmin,
   NoteText,
+  Modal,
   FadedText,
   TransitionBtoT,
 } from "../../../../components";
@@ -22,11 +25,18 @@ import {
   toastReset,
 } from "../../../../store/slices/Attendance/attendanceSlice";
 
+var axios = require("axios");
+
 const Attendance = () => {
   const [dateFilter, setDateFilter] = useState({
     from: "",
     to: "",
   });
+  //Todo use states
+  const [todoName, setTodoName] = useState();
+  const [todoTime, setTodoTime] = useState();
+  const [todoDeadline, setTodoDeadline] = useState();
+
   const [currentPage, setCurrentPage] = useState(0);
   const [attendanceView, setAttendanceView] = useState("0");
   const { isLoading, showToast, message, success, allAttendance } = useSelector(
@@ -40,6 +50,35 @@ const Attendance = () => {
     dispatch(fetchAllAttendanceDateFilter(dateFilter));
   };
 
+  const createEventHandler = (e) => {
+    console.log(todoName);
+    e.preventDefault();
+    toast("Adding todo task");
+    var data = new FormData();
+
+    data.append("name", todoName);
+    data.append("time", todoTime);
+    data.append("deadline", todoDeadline);
+    console.log(data);
+
+    // var config = {
+    //   method: "post",
+    //   url: "https://95d5-2402-3a80-6ff-3e4d-c83b-8d43-d444-56e7.in.ngrok.io/openaiapp/summary/",
+    //   headers: {
+    //     // ...data.getHeaders()
+    //   },
+    //   data: data,
+    // };
+
+    // axios(config)
+    //   .then(function (response) {
+    //     console.log(JSON.stringify(response.data));
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+  };
+
   const handlePageClick = useCallback(
     (e) => {
       if (e) {
@@ -49,7 +88,6 @@ const Attendance = () => {
     },
     [dispatch]
   );
-
   const navigateTo = (date) => navigate(`attendance-by-date/${date}`);
 
   useEffect(() => {
@@ -79,6 +117,43 @@ const Attendance = () => {
               <option value="1">Table</option>
             </select>
           </div> */}
+          <Modal
+            title="Add new todo event"
+            activator={({ setShow }) => (
+              <Button Icon={HiPlusCircle} onClick={() => setShow(true)}>
+                Add Todo Event
+              </Button>
+            )}>
+            <form onSubmit={createEventHandler}>
+              <InputTag
+                Icon={FiType}
+                label="name"
+                type="text"
+                placeholder="Enter event to-do name"
+                value={todoName}
+                onChange={(e) => setTodoName(e.target.value)}
+              />
+              <InputTag
+                Icon={FiType}
+                label="Duration"
+                type="text"
+                placeholder="Enter Duration (min)"
+                value={todoTime}
+                onChange={(e) => setTodoTime(e.target.value)}
+              />
+              <InputTag
+                Icon={FiType}
+                label="Deadline"
+                type="date"
+                placeholder="Chose Deadline"
+                value={todoDeadline}
+                onChange={(e) => setTodoDeadline(e.target.value)}
+              />
+              <Button type="submit" Icon={HiPlusCircle}>
+                Create
+              </Button>
+            </form>
+          </Modal>
           <div className="mx-auto w-96 ">
             Legend:
             <div class="flex items-left">

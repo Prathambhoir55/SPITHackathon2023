@@ -4,8 +4,21 @@ import smoothLandmarks from "mediapipe-pose-smooth"; // ES6
 import * as cam from "@mediapipe/camera_utils";
 import * as drawingUtils from "@mediapipe/drawing_utils";
 import { useRef, useEffect, useState, useDebugValue } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Posture() {
+  let timeout;
+
+  function myFunction() {
+    timeout = setTimeout(alertFunc, 7000);
+  }
+
+  function alertFunc() {
+    toast("Please sit upright and fix your posture");
+    clearTimeout(timeout);
+  }
+
   function findDistance(x1, y1, x2, y2) {
     var dist = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
     return dist;
@@ -38,14 +51,12 @@ function Posture() {
     var l_hip_y = results.poseLandmarks[23].y;
 
     var offset = findDistance(l_shldr_x, l_shldr_y, r_shldr_x, r_shldr_y);
-    console.log(offset);
+    console.log(results);
     const canvasElement = canvasRef.current;
     const canvasCtx = canvasElement.getContext("2d");
 
     canvasCtx.save();
     canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-    canvasCtx.font = "30px Arial";
-    canvasCtx.fillText(offset, 200, 100);
     canvasCtx.drawImage(
       results.image,
       0,
@@ -120,7 +131,7 @@ function Posture() {
       setdidLoad(true);
     }
   }, [didLoad]);
-
+  myFunction();
   return (
     <div className="Posture">
       <div className="container">
