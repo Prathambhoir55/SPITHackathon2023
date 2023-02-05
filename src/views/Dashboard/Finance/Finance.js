@@ -91,6 +91,28 @@ const Finance = () => {
     name: "",
     description: "",
   });
+
+
+  const [sum,setsum] = useState([{
+    "pdf_name" :"Science",
+    "summary":"living outside, often in a tent"
+  }]);
+  useEffect(() => {
+    var config = {
+      method: 'get',
+      url: 'https://95d5-2402-3a80-6ff-3e4d-c83b-8d43-d444-56e7.in.ngrok.io/openaiapp/getsummary/',
+     
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        setsum(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  },[])
   const [allowanceId, setAllowanceId] = useState("");
   const [showAllowanceWarning, setShowAllowanceWarning] = useState(false);
   const [showDeductionWarning, setShowDeductionWarning] = useState(false);
@@ -269,37 +291,37 @@ const Finance = () => {
             </Modal>
           </SectionHeader>
           <div className="grid md:grid-cols-4 gap-3">
-            {DOMAINCHOICES.map((item, idx) => (
+            {sum.map((item, idx) => (
               <TransitionBtoT key={idx}>
-                <CardSmall value={item.value} idx={idx + 1} name={item.data} />
+                <CardSmall value={item.pdf_name} idx={idx + 1} name={item.pdf_name} />
               </TransitionBtoT>
             ))}
           </div>
         </TabPanel>
         <TabPanel>
           {/* <div className="grid md:grid-cols-4 gap-3"> */}
-            {PROFESSION_CHOICES.map((item, idx) => (
-              <TransitionBtoT key={idx}>
+          {PROFESSION_CHOICES.map((item, idx) => (
+            <TransitionBtoT key={idx}>
               <Accordion className="p-1 m-3">
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography>Accordion 1</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                   <Cards/>
-                  </AccordionDetails>
-                </Accordion>
-             
-              </TransitionBtoT>
-            ))}
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography>{item.data}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Cards />
+                </AccordionDetails>
+              </Accordion>
+
+            </TransitionBtoT>
+          ))}
           {/* </div> */}
         </TabPanel>
         <TabPanel>
           <div className="grid md:grid-cols-2 gap-3">
-            {IMPROVEMENT_CHOICES.map((item, idx) => (
+            {sum.map((item, idx) => (
               <div>
                 <Accordion>
                   <AccordionSummary
@@ -307,12 +329,11 @@ const Finance = () => {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography>Accordion 1</Typography>
+                    <Typography>{item.pdf_name}</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                      malesuada lacus ex, sit amet blandit leo lobortis eget.
+                      {item.summary}
                     </Typography>
                   </AccordionDetails>
                 </Accordion>

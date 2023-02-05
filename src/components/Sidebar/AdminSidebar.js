@@ -205,7 +205,7 @@ export default function Sidebar() {
                     onClick={() => setCollapseShow(false)}
                     to="/admin/inventory">
                     <BsFileEarmarkTextFill className="w-5 h-5 mr-2" />
-                    Text Summarization
+                    Chat bot
                   </NavLink>
                 </li>
               )}
