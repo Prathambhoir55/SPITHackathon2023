@@ -17,11 +17,11 @@ class MCQGeneratorAPI(GenericAPIView):
         if serializer.is_valid():
             instance = serializer.save()
         path = str(instance.file.path)
-        all_answers, all_questions, all_choices = final_api(f"{path}")
+#        all_answers, all_questions, all_choices = final_api(f"{path}")
 
-        print(all_answers)
-        print(all_questions)
-        print(all_choices)
+        # print(all_answers)
+        # print(all_questions)
+        # print(all_choices)
         return JsonResponse({"message":path}, status=status.HTTP_200_OK)
 
 class TextSummarizerAPI(GenericAPIView):
@@ -34,6 +34,6 @@ class TextSummarizerAPI(GenericAPIView):
         if serializer.is_valid():
             instance = serializer.save()
         path = str(instance.file.path)
-        text = summarizerTool(f"{path}")
-        return JsonResponse({"message":"success", "text":text}, status=status.HTTP_200_OK)
+        # text = summarizerTool(f"{path}")
+        return JsonResponse({"message":"success", "text":path}, status=status.HTTP_200_OK)
 
