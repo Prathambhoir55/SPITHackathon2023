@@ -39,5 +39,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('cluster/', include('cluster.urls')),
+    path('openaiapp/', include('openaiapp.urls')),
+    path('summarizer/', include('summarizerapp.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
