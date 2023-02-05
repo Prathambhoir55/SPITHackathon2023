@@ -2,6 +2,8 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.db import models
 from rest_framework.authtoken.models import Token
+from datetime import date
+from backend.settings import DATE_INPUT_FORMATS
 
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -42,6 +44,8 @@ class User(AbstractUser):
     name = models.CharField(max_length = 30)
     phone_no = models.CharField(max_length = 10)
     cluster = models.IntegerField(blank=True, null=True)
+    last_log = models.DateField(default=date.today)
+    streak = models.IntegerField(blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS=[]

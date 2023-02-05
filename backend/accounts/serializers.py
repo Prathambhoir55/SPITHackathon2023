@@ -58,3 +58,9 @@ class UserSerializer(serializers.ModelSerializer):
             instance.set_password(validated_data['password'])
         instance.save()
         return instance
+
+class StreakSerializer(serializers.ModelSerializer):
+    login_time = serializers.DateField()
+    class Meta:
+        model = User
+        fields = ['login_time']
