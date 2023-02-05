@@ -1,10 +1,61 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Card.css'
 import { useDispatch, useSelector } from "react-redux"
 import Typical from 'react-typical'
+var axios = require('axios');
+
 const Cards = () => {
 
-  const { currentTheme, colors } = useSelector((state) => state.theme)
+    const [data, setData] = useState([{
+        "pdf": 69,
+        "question": " What is the longest river in the world?",
+        "answer": " The Nile River is the longest river in the world, at 4,160 miles long. "
+    },
+    {
+        "pdf": 69,
+        "question": " What is the name of the area of the upper Nile that had the richest gold mines in Africa?",
+        "answer": " Nubia was the Egyptian name for the area of the upper Nile that had the richest gold mines in Africa. "
+    },
+    {
+        "pdf": 69,
+        "question": " What is the name of the first dynasty of the Egyptian empire?",
+        "answer": " The first dynasty of the Egyptian empire began about 2925 B.C. "
+    },
+    {
+        "pdf": 69,
+        "question": " What is the name of the largest pyramid ever built?",
+        "answer": " The Great Pyramid, built by King Khufu, is the largest pyramid ever built. "
+    },
+    {
+        "pdf": 69,
+        "question": " What is the name of the secret tomb built for a New Kingdom pharaoh that was ever found with much of its treasure untouched?",
+        "answer": " The secret tomb built for a New Kingdom pharaoh that was ever found with much of its treasure untouched is the tomb of Tutankhamun."
+    },
+    {
+        "pdf": 70,
+        "question": " What is Bhumika Mange's educational background?",
+        "answer": " Bhumika Mange has a Bachelor of Technology in Computer from Dwarkadas J. Sanghvi College of Engineering with an average CGPA of 9.75. She also attended St Mary high school and junior college Vashi from 2007-2019, where she achieved a Mathematics score of 100/100, was the top scorer in college, and the 2nd rank holder in Navi Mumbai HSC with 96% and SSC with 90%. "
+    },
+    {
+        "pdf": 70,
+        "question": " What achievements has Bhumika Mange accomplished?",
+        "answer": " Bhumika Mange has been a finalist in the 17th Avishkar inter-college research convention zonal and district level rounds, among the top 30 students at her college selected for the corporate training program conducted by JPMorgan Chase, the runner up in Unscript Rookies 24hrs national level hackathon and Best Pitch Winner in Lines of Code 24hrs national level Hackathon, 3rd place in the 72-hour Unicode Internal Hackathon and the Inspect Frontend Hackathon, 3rd Place in Codebash - competitive programming competition, AIR 2097 out of 89k+ participants in IICC-"
+    }]);
+    // var config = {
+    //     method: 'get',
+    //     url: 'https://95d5-2402-3a80-6ff-3e4d-c83b-8d43-d444-56e7.in.ngrok.io/openaiapp/getsummary/',
+
+    // };
+
+    // axios(config)
+    //     .then(function (response) {
+    //         console.log(JSON.stringify(response.data));
+    //         // setData(response.data)
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
+    const { currentTheme, colors } = useSelector((state) => state.theme)
 
     const items = [
         {
@@ -51,22 +102,22 @@ const Cards = () => {
         <div> <div className="cardings">
             {
 
-                items.map((item) => (
+                data.map((item) => (
                     <div data-aos="fade-left" className={` carding main-task-background ${currentTheme
                         ? colors.bg[currentTheme].dark
                         : "bg-purple-800"}`} key={item.id}>
                         <div className={` carding-inner main-task-background ${currentTheme
-                        ? colors.bg[currentTheme].dark
-                        : "bg-purple-800"}`} >
+                            ? colors.bg[currentTheme].dark
+                            : "bg-purple-800"}`} >
                             <div className={`carding-front main-task-background ${currentTheme
-                        ? colors.bg[currentTheme].dark
-                        : "bg-purple-800"}`} >
-                                <h1>{item.name}</h1>
+                                ? colors.bg[currentTheme].dark
+                                : "bg-purple-800"}`} >
+                                <h1>{item.question}</h1>
                             </div>
                             <div className={`carding-back main-task-background ${currentTheme
-                        ? colors.bg[currentTheme].dark
-                        : "bg-purple-800"}`}>
-                                <h6>{item.data}</h6>
+                                ? colors.bg[currentTheme].dark
+                                : "bg-purple-800"}`}>
+                                <h6>{item.answer}</h6>
                             </div>
                         </div>
                     </div>
