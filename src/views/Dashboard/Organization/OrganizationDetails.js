@@ -37,32 +37,62 @@ import {
 import DataTag from "../../../components/InputTags/dataTag"
 import MCQTag from "../../../components/InputTags/MCQTag"
 import Swal from "sweetalert2"
+import PieChart from "../AdminDashboard/components/Charts/PieChart"
 
 const OrganizationDetails = () => {
+	var { id } = useParams();
 	localStorage.setItem("total", 0)
 	localStorage.setItem("attempt", 0)
 	const navi = useNavigate()
 	const { orgID } = useParams();
 	const [counter, setCounter] = useState(60);
-
+	const gender = [
+		{ id: 0, name: "Unspecified" },
+		{ id: 1, name: "Male" },
+		{ id: 2, name: "Female" },
+		{ id: 3, name: "Others" },
+	]
 	useEffect(() => {
 		const timer =
 			counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
 		if (counter == 0) {
-			Swal.fire({
-				icon: 'error',
-				title: 'Oops...',
-				text: 'Time Over!',
-				footer: ''
-			}).then((result) => {
-				if (result.isConfirmed) {
-					navi("/admin/organizations/")
-					// Swal.fire(
-					// 	{`Score`}
-					// 	'success'
-					// )
-				}
-			})
+			if (id < 6) {
+
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Time Over!',
+					footer: ''
+				}).then((result) => {
+					if (result.isConfirmed) {
+						navi("/admin/organizations/")
+						// Swal.fire(
+						// 	{`Score`}
+						// 	'success'
+						// )
+					}
+				})
+			}
+			else {
+
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					html: <PieChart labels={["Jan", "Feb", "march", "April"]}
+						colors={["#EED180", "#FFDEB4", "#FF8FB1", "#B7D3DF"]}
+						dataSet={gender}
+					></PieChart>,
+					footer: ''
+				}).then((result) => {
+					if (result.isConfirmed) {
+						navi("/admin/organizations/")
+						// Swal.fire(
+						// 	{`Score`}
+						// 	'success'
+						// )
+					}
+				})
+			}
 		}
 		return () => clearInterval(timer);
 	}, [counter]);
@@ -110,21 +140,45 @@ const OrganizationDetails = () => {
 				})
 			}
 			<Button onClick={() => {
-				Swal.fire({
-					icon: 'success',
-					title: 'Test Over...',
-					footer: ''
-				}).then((result) => {
-					if (result.isConfirmed) {
-						navi("/admin/organizations/")
-						// Swal.fire(
-						// 	{`Score`}
-						// 	'success'
-						// )
-					}
-				})
-			}}>submit</Button>
-		</div>
+				if (id < 6) {
+					Swal.fire({
+						icon: 'success',
+						title: 'Test Over... you have scored 2',
+						footer: ''
+					}).then((result) => {
+						if (result.isConfirmed) {
+							navi("/admin/organizations/")
+							// Swal.fire(
+							// 	{`Score`}
+							// 	'success'
+							// )
+						}
+					})
+
+				}
+				else {
+
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						html: `<PieChart labels={["Jan", "Feb", "march", "April"]}
+							colors={["#EED180", "#FFDEB4", "#FF8FB1", "#B7D3DF"]}
+							dataSet={gender}
+						></PieChart>`,
+						footer: ''
+					}).then((result) => {
+						if (result.isConfirmed) {
+							navi("/admin/organizations/")
+							// Swal.fire(
+							// 	{`Score`}
+							// 	'success'
+							// )
+						}
+					})
+				}
+			}}
+			>submit</Button>
+		</div >
 	)
 }
 

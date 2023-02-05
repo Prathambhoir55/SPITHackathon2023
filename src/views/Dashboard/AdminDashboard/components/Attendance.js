@@ -65,11 +65,11 @@ const Attendance = () => {
   return (
     <div>
       {isLoading && <LoadingSpinner />}
-      <SubHeading>All Attendance</SubHeading>
+      <SubHeading>Calendar</SubHeading>
       <RenderIf isTrue={allAttendance && allAttendance?.data?.length > 0}>
         <div className="flex align-middle">
-          <NoteText>Attendance View</NoteText>
-          <div className="flex">
+          {/* <NoteText>Attendance View</NoteText> */}
+          {/* <div className="flex">
             <select
               value={attendanceView}
               onChange={(e) => setAttendanceView(e.target.value)}
@@ -78,13 +78,13 @@ const Attendance = () => {
               <option value="0">Calendar</option>
               <option value="1">Table</option>
             </select>
-          </div>
+          </div> */}
           <div className="mx-auto w-96 ">
             Legend:
-            <div class="flex items-center">
-              <div className="w-4 h-4 rounded-sm bg-red-400 flex inline-block"></div>
+            <div class="flex items-left">
+              <div className="w-4 h-4 text-left rounded-sm bg-red-400 flex inline-block"></div>
               <div className="pl-2">
-                <span>Reschedule restricted (HigH Priority)</span>
+                <span>Reschedule restricted (High Priority)</span>
               </div>
             </div>
             <div class="flex items-center">

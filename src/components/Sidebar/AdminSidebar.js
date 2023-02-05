@@ -189,7 +189,7 @@ export default function Sidebar() {
                     onClick={() => setCollapseShow(false)}
                     to="/admin/users">
                     <MdOutlineAutoGraph className="w-5 h-5 mr-2" />
-                    Interview Analysis
+                    Test Analysis
                   </NavLink>
                 </li>
               )}
@@ -215,7 +215,7 @@ export default function Sidebar() {
                     onClick={() => setCollapseShow(false)}
                     to="/admin/interview">
                     <FaRobot className="w-5 h-5 mr-2" />
-                    Interview
+                    Posture corrector
                   </NavLink>
                 </li>
               )}

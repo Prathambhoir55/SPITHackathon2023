@@ -39,6 +39,9 @@ const Organizations = () => {
 		"solidity",
 		"Smart contracts",
 	]
+	const Learning = [
+		"Questions",
+	]
 
 	const [currentTab, setCurrentTab] = useState(0)
 	const [isPending, startTransition] = useTransition()
@@ -73,6 +76,7 @@ const Organizations = () => {
 					<TabPanel>{!isPending && <AllOrganizations temp={dataA}  id="3"/>}</TabPanel>
 					<TabPanel>{!isPending && <AllOrganizations temp={Blockchain} id="4"/>}</TabPanel>
 					<TabPanel>{!isPending && <AllOrganizations temp={front} id="1"/>}</TabPanel>
+					<TabPanel>{!isPending && <AllOrganizations temp={Learning} id="6"/>}</TabPanel>
 				</Suspense>
 			</Tabs>
 		</div>

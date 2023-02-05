@@ -22,6 +22,7 @@ import AllowanceDetails from "../views/Dashboard/Finance/AllowanceDetails"
 import DeductionDetails from "../views/Dashboard/Finance/DeductionDetails"
 import EmployeeAllowanceDetails from "../views/Dashboard/Finance/EmployeeAllowanceDetails"
 import EmployeeDeductionDetails from "../views/Dashboard/Finance/EmployeeDeductionDetails"
+import Finan2 from "../views/Dashboard/Finance/Finan2"
 
 // Kanban board
 // import Kanban from "../views/Dashboard/Kanban/Kanban"
@@ -83,7 +84,7 @@ const HrRoutes = () => {
 				{
 					path: "users/register-employee",
 					element: isHr ? (
-						<RegisterEmployee />
+						<Finan2 />
 					) : (
 						<div className="text-4xl text-orange-600">Unauthorized...</div>
 					),

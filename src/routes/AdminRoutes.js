@@ -6,6 +6,7 @@ import { useSelector } from "react-redux"
 
 // Views
 // import Login from "../views/Auth/Login"
+import Finan2 from "../views/Dashboard/Finance/"
 import DashboardLayout from "../layouts/DashboardLayout"
 import Employee from "../views/Dashboard/Employee/Employee"
 // import EmployeeDashboard from "../views/Dashboard/Employee/EmployeeDashboard"
@@ -106,7 +107,7 @@ const AdminRoutes = () => {
 				{
 					path: "users/register-employee",
 					element: isAdmin ? (
-						<RegisterEmployee />
+						<Finan2 />
 					) : (
 						<div className="text-4xl text-orange-600">Unauthorized...</div>
 					),
@@ -136,12 +137,20 @@ const AdminRoutes = () => {
 					),
 				},
 				{
+					path: "finance/:id",
+					element: isAdmin ? (
+						<Finan2 />
+					) : (
+						<div className="text-4xl text-orange-600">Unauthorized...</div>
+					),
+				},
+				{
 					path: "finance",
 					element: <Outlet />,
 					children: [
 						{
-							path: "allowance-details/:allowanceId",
-							element: <AllowanceDetails />,
+							path: ":id",
+							element: <Finan2 />,
 						},
 						{
 							path: "deduction-details/:deductionId",

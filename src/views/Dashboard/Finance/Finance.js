@@ -4,9 +4,16 @@ import { toast } from "react-toastify";
 import { HiPlusCircle, HiQuestionMarkCircle } from "react-icons/hi";
 import { FiType } from "react-icons/fi";
 import { AiOutlineBook } from "react-icons/ai";
-
+import { FlashcardComponent } from 'react-flashcard'
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "../../../assets/styles/react-tabs.css";
+import * as React from 'react';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useNavigate } from "react-router-dom"
 import {
   // Allowance
   allAllowances,
@@ -38,11 +45,17 @@ import {
 // Importing componts for tabs
 import Bank from "../Organization/Bank";
 import Expenses from "./Expenses";
+import Cards from "./Cards";
+import Temp from "./tempCards";
+var axios = require('axios');
+var FormData = require('form-data');
+// var fs = require('fs');
 
 const Finance = () => {
   const [domain, setDomain] = useState();
   const CardSmall = ({ idx, name, children, value }) => {
     const { currentTheme, colors } = useSelector((state) => state.theme);
+
     return (
       <div
         style={{ cursor: "pointer" }}
@@ -56,9 +69,8 @@ const Finance = () => {
         }}
         className="shadow-sm border borderColor px-4 py-3 rounded-lg bg-[#f7f6f9] dark:bg-purple_5 relative">
         <h4
-          className={`font-normal text-white text-sm px-2 rounded-lg mb-1.5  dark:bg-purple-800 inline-block ${
-            currentTheme ? colors.bg[currentTheme].dark : "bg-purple-800"
-          }`}>
+          className={`font-normal text-white text-sm px-2 rounded-lg mb-1.5  dark:bg-purple-800 inline-block ${currentTheme ? colors.bg[currentTheme].dark : "bg-purple-800"
+            }`}>
           {idx}
         </h4>
         {name && (
@@ -70,7 +82,7 @@ const Finance = () => {
       </div>
     );
   };
-
+  const navigate = useNavigate();
   const [newAllowance, setNewAllowance] = useState({
     name: "",
     description: "",
@@ -83,6 +95,7 @@ const Finance = () => {
   const [showAllowanceWarning, setShowAllowanceWarning] = useState(false);
   const [showDeductionWarning, setShowDeductionWarning] = useState(false);
   const [file, setFile] = useState();
+  const [name, setName] = useState();
 
   function handleChange(event) {
     setFile(event.target.files[0]);
@@ -102,11 +115,27 @@ const Finance = () => {
   };
   const createDeductionHandler = (e) => {
     e.preventDefault();
-    dispatch(createDeductions(newDeduction));
-    setNewAllowance({
-      name: "",
-      description: "",
-    });
+    toast("Creating summary and flash cards")
+    var data = new FormData();
+    data.append('file', file);
+    data.append('name', name);
+
+    var config = {
+      method: 'post',
+      url: 'https://95d5-2402-3a80-6ff-3e4d-c83b-8d43-d444-56e7.in.ngrok.io/openaiapp/summary/',
+      headers: {
+        // ...data.getHeaders()
+      },
+      data: data
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   const deleteAllowanceHandler = () => {
     dispatch(deleteAllowance(allowanceId));
@@ -179,51 +208,61 @@ const Finance = () => {
     { value: "5", data: "I use a lot of filler (like 'um')" },
     { value: "6", data: "I feel I ramble sometimes" },
   ];
+  const cardData = [
+    {
+      front: {
+        text: "living outside, often in a tent",
+        image: "https://o.quizlet.com/RWRdgDus.uuqNDUrJ0ernA.jpg",
+      },
+      back: {
+        text: "Camping",
+      }
+    }
+  ]
+  console.log(file);
+  const { currentTheme, colors } = useSelector((state) => state.theme)
+
   return (
     <div>
       <Tabs selectedTabClassName="tabs-styles">
-        <Button>Add</Button>
         <TabList className="tab_list-styles ">
           <Tab className="tab-styles">Notes</Tab>
           <Tab className="tab-styles">Flash cards</Tab>
           <Tab className="tab-styles">Summary</Tab>
         </TabList>
         <TabPanel>
-          <SectionHeader text="All the finance details such as allowance, deductions and salary etc.">
+          <SectionHeader>
             {/* Deduction create modal */}
             <Modal
               title="Add new deduction"
               activator={({ setShow }) => (
                 <Button Icon={HiPlusCircle} onClick={() => setShow(true)}>
-                  Create deduction
+                  Add
                 </Button>
               )}>
               <form onSubmit={createDeductionHandler}>
                 <InputTag
                   Icon={FiType}
-                  label="Name"
-                  placeholder="Enter deduction name"
-                  value={newDeduction.name}
+                  label="Notes"
+                  type="file"
+                  // placeholder="Enter deduction name"
+                  // value={newDeduction.name}
                   onChange={(e) =>
-                    setNewDeduction((prev) => ({
-                      ...prev,
-                      name: e.target.value,
-                    }))
+                    setFile(() => e.target.files[0])
                   }
                 />
-                <TextareaTag
-                  Icon={HiQuestionMarkCircle}
-                  label="Description"
-                  placeholder="Enter deduction description"
-                  value={newDeduction.description}
+                <InputTag
+                  Icon={FiType}
+                  label="name"
+                  type="text"
+                  placeholder="Enter topic name"
+                  value={name}
                   onChange={(e) =>
-                    setNewDeduction((prev) => ({
-                      ...prev,
-                      description: e.target.value,
-                    }))
+                    setName(e.target.value)
                   }
                 />
-                <Button type="submit" Icon={HiPlusCircle}>
+                <Button type="submit"
+                  Icon={HiPlusCircle}>
                   Create
                 </Button>
               </form>
@@ -241,17 +280,43 @@ const Finance = () => {
           <div className="grid md:grid-cols-4 gap-3">
             {PROFESSION_CHOICES.map((item, idx) => (
               <TransitionBtoT key={idx}>
-                <CardSmall value={item.value} idx={idx + 1} name={item.data} />
+                <div onClick={() => navigate(`idx`)} className="shadow-sm border borderColor px-4 py-3 rounded-lg bg-[#f7f6f9] dark:bg-purple_5 relative">
+                  <h4
+                    className={`font-normal text-white text-sm px-2 rounded-lg mb-1.5  dark:bg-purple-800 inline-block ${currentTheme ? colors.bg[currentTheme].dark : "bg-purple-800"
+                      }`}
+                  >
+                    {idx}
+                  </h4>
+                  {item.data && (
+                    <p className="font-normal dark:text-slate-300 text-slate-700">{item.data}</p>
+                  )}
+                  {/* {item.data} */}
+                </div>
+                { }
               </TransitionBtoT>
             ))}
           </div>
         </TabPanel>
         <TabPanel>
-          <div className="grid md:grid-cols-4 gap-3">
+          <div className="grid md:grid-cols-2 gap-3">
             {IMPROVEMENT_CHOICES.map((item, idx) => (
-              <TransitionBtoT key={idx}>
-                <CardSmall value={item.value} idx={idx + 1} name={item.data} />
-              </TransitionBtoT>
+              <div>
+                <Accordion>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography>Accordion 1</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                      malesuada lacus ex, sit amet blandit leo lobortis eget.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              </div>
             ))}
           </div>
         </TabPanel>
