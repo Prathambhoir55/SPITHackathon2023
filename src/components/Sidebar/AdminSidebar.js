@@ -12,6 +12,9 @@ import {
   HiHome,
   HiCube,
 } from "react-icons/hi";
+import { AiFillSchedule } from "react-icons/ai";
+import { BsFileEarmarkTextFill, BsBarChartLineFill } from "react-icons/bs";
+import { IoMdAnalytics, IoBarChartSharp } from "react-icons/io";
 import { VscGraph } from "react-icons/vsc";
 import { FaRobot, FaCalendarTimes } from "react-icons/fa";
 import { MdOutlineAutoGraph } from "react-icons/md";
@@ -133,7 +136,7 @@ export default function Sidebar() {
                     }
                     onClick={() => setCollapseShow(false)}
                     to="/admin/dashboard/">
-                    <HiHome className="w-5 h-5 mr-2" />
+                    <AiFillSchedule className="w-5 h-5 mr-2" />
                     Schedule
                   </NavLink>
                 </li>
@@ -149,7 +152,7 @@ export default function Sidebar() {
                     }
                     onClick={() => setCollapseShow(false)}
                     to="/admin/organizations">
-                    <VscGraph className="w-5 h-5 mr-2" />
+                    <BsBarChartLineFill className="w-5 h-5 mr-2" />
                     Tests
                   </NavLink>
                 </li>
@@ -188,8 +191,8 @@ export default function Sidebar() {
                     }
                     onClick={() => setCollapseShow(false)}
                     to="/admin/users">
-                    <MdOutlineAutoGraph className="w-5 h-5 mr-2" />
-                    Interview Analysis
+                    <IoMdAnalytics className="w-5 h-5 mr-2" />
+                    Test Analysis
                   </NavLink>
                 </li>
               )}
@@ -201,8 +204,8 @@ export default function Sidebar() {
                     }
                     onClick={() => setCollapseShow(false)}
                     to="/admin/inventory">
-                    <HiCube className="w-5 h-5 mr-2" />
-                    Chat Bot
+                    <BsFileEarmarkTextFill className="w-5 h-5 mr-2" />
+                    Text Summarization
                   </NavLink>
                 </li>
               )}
@@ -213,9 +216,9 @@ export default function Sidebar() {
                       isActive ? activeLink : inActiveLink
                     }
                     onClick={() => setCollapseShow(false)}
-                    to="/admin/interview">
+                    to="/admin/posture">
                     <FaRobot className="w-5 h-5 mr-2" />
-                    Interview
+                    Posture
                   </NavLink>
                 </li>
               )}
