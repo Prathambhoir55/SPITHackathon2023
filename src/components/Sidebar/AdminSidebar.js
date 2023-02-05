@@ -231,10 +231,10 @@ export default function Sidebar() {
                     to="/admin/posture">
                     <FaRobot className="w-5 h-5 mr-2" />
                     Posture
-                    <MdCancel
+                    {/* <MdCancel
                       className="w-5 h-5 mr-2 ml-auto"
-                      onClick={() => console.log("Cancel")}
-                    />
+                      onClick={navigate("/admin/dashboard")}
+                    /> */}
                   </NavLink>
                 </li>
               )}
